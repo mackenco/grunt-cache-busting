@@ -11,7 +11,6 @@ module.exports = function (grunt) {
 			outputDir = path.dirname(this.data.file),
 			fileExtension = path.extname(this.data.file),
 			replacementExtension = path.extname(this.data.replacement),
-      basename = path.basename(this.data.replacement, replacementExtension),
 			replacementWithoutExtension = this.data.replacement.slice(0, this.data.replacement.length - replacementExtension.length),
 			outputFile = outputDir + path.sep + replacementWithoutExtension + "-" + hash + fileExtension;
 
@@ -28,7 +27,7 @@ module.exports = function (grunt) {
 			src: this.data.replace,
 			overwrite: true,
 			replacements: [{
-				from: new RegExp(basename + "-.+" + replacementExtension),
+				from: new RegExp(replacementWithoutExtension + "-.+" + replacementExtension),
 				to: replacementWithoutExtension + "-" + hash + replacementExtension
 			}]
 		});
